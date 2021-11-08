@@ -63,7 +63,6 @@ namespace VCSchool1023
             button.GetProperty("value");
             Assert.IsTrue(button.GetProperty("value").Equals("Uncheck All"));
             button.Click();
-            Assert.AreEqual(multipleCheckboxList.GetType())
         }
     }
 }
