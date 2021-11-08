@@ -55,7 +55,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Birutes ND.cs" />
     <Compile Include="BrowsersDemo.cs" />
     <Compile Include="CheckBox.cs" />
     <Compile Include="Demo.cs" />
