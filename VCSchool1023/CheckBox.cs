@@ -35,18 +35,7 @@ namespace VCSchool1023
             IWebElement text = _driver.FindElement(By.Id("txtAge"));
             Assert.IsTrue(text.Text.Equals("Success - Check box is checked"));
         }
-        [Test]
-        public static void TestMultipleCheckbox()
-        {
-            IWebElement firstCheckbox = _driver.FindElement(By.Id("isAgeSelected"));
-            if (firstCheckbox.Selected)
-                firstCheckbox.Click();
-            IReadOnlyCollection<IWebElement> multipleCheckboxList = _driver.FindElements(By.CssSelector(".cb1-element"));
-            foreach (IWebElement element in multipleCheckboxList)
-            {
-                element.Click();
-            }
-        }
+
 
         [Test]
         public static void TestMultipleCheckbox1()
@@ -62,7 +51,36 @@ namespace VCSchool1023
             IWebElement button = _driver.FindElement(By.Id("check1"));
             button.GetProperty("value");
             Assert.IsTrue(button.GetProperty("value").Equals("Uncheck All"));
-            button.Click();
+            
         }
+
+            [Test]
+
+            public static void TestMultipleCheckbox3()
+            {
+                IWebElement button = _driver.FindElement(By.Id("check1"));
+
+                if (button.GetAttribute("value") == "Uncheck All")
+                {
+                    button.Click();
+                }
+
+                IReadOnlyCollection<IWebElement> multipleCheckboxList = _driver.FindElements(By.ClassName("cb1-element"));
+                int counter = 0;
+                foreach (IWebElement element in multipleCheckboxList)
+                {
+                    if (element.Selected)
+                    {
+                        counter++;
+                    }
+                }
+                Assert.AreEqual(0, counter, "Some of the checkboxes are still checked");
+            }
+        }
+
     }
-}
+
+
+    
+    
+
