@@ -10,10 +10,10 @@ namespace VCSchool1023.Page
 {
    public class CheckboxDemoPage : BasePage
     {
-        private IWebElement singleCheckbox => Driver.FindElement(By.Id("isAgeSelected"));
-        private IWebElement Text => Driver.FindElement(By.Id("txtAge"));
+        private IWebElement _singleCheckbox => Driver.FindElement(By.Id("isAgeSelected"));
+        private IWebElement _Text => Driver.FindElement(By.Id("txtAge"));
         private IReadOnlyCollection<IWebElement> MultipleCheckboxList => Driver.FindElements(By.CssSelector(".cb1-element"));
-        private IWebElement Button => Driver.FindElement(By.Id("check1"));
+        private IWebElement _Button => Driver.FindElement(By.Id("check1"));
 
         public CheckboxDemoPage(IWebDriver webdriver) : base(webdriver)
         {
@@ -21,22 +21,22 @@ namespace VCSchool1023.Page
         }
         public CheckboxDemoPage CheckSingleCheckbox()
         {
-            if (!singleCheckbox.Selected)
-                singleCheckbox.Click();
+            if (!_singleCheckbox.Selected)
+                _singleCheckbox.Click();
             return this;
         }
 
         public CheckboxDemoPage CheckResult()
         {
-            Assert.IsTrue(Text.Text.Equals("Success - Check box is checked"));
+            Assert.IsTrue(_Text.Text.Equals("Success - Check box is checked"));
             return this;
         }
 
 
         private void UncheckFirstBlockCheckbox()
         {
-            if (singleCheckbox.Selected)
-                singleCheckbox.Click();
+            if (_singleCheckbox.Selected)
+                _singleCheckbox.Click();
         }
 
         public CheckboxDemoPage CheckAllCheckboxes()
@@ -59,7 +59,7 @@ namespace VCSchool1023.Page
 
         public CheckboxDemoPage ClickButton()
         {
-            Button.Click();
+            _Button.Click();
             return this;
         }
 
@@ -69,6 +69,7 @@ namespace VCSchool1023.Page
             {
                 Assert.False(element.Selected, "Checkbox is still checked");
                 //Assert.IsTrue(!element.Selected, "Checkbox is still checked");
+                //Assert.That(!element.Selected, "Checkbox is still checked");
                 //Assert.That(!element.Selected, "Checkbox is still checked");
             }
             return this;

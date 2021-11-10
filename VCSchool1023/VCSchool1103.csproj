@@ -64,12 +64,14 @@
     <Compile Include="PaceTest.cs" />
     <Compile Include="Page\BasePage.cs" />
     <Compile Include="Page\CheckboxDemoPage.cs" />
+    <Compile Include="Page\GabrielePage.cs" />
     <Compile Include="Page\SeleniumCheckBoxNamePage.cs" />
     <Compile Include="Page\SeleniumInputPage.cs" />
     <Compile Include="Page\VartuTechnikaPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestWebDriver.cs" />
     <Compile Include="Test\CheckboxDemoTest.cs" />
+    <Compile Include="Test\GabrieleTest.cs" />
     <Compile Include="Test\SeleniumCheckBoxTest.cs" />
     <Compile Include="Test\SeleniumInputTest.cs" />
     <Compile Include="Test\VartuTechnikaTest.cs" />
