@@ -8,21 +8,19 @@ using System.Threading.Tasks;
 
 namespace VCSchool1023.Page
 {
-    public class SeleniumInputPage
+    public class SeleniumInputPage : BasePage
     {
-        private static IWebDriver _driver;
+       // private static IWebDriver Driver; reikia istrinti
 
-        private IWebElement _inputField => _driver.FindElement(By.Id("user-message"));
-        private IWebElement _button => _driver.FindElement(By.CssSelector("#get-input > button"));
-        private IWebElement _result => _driver.FindElement(By.Id("display"));
-        private IWebElement _firstInput => _driver.FindElement(By.Id("sum1"));
-        private IWebElement _secondInput => _driver.FindElement(By.Id("sum2"));
-        private IWebElement _getTotalButton => _driver.FindElement(By.CssSelector("#gettotal > button"));
-        private IWebElement _resultFromPage => _driver.FindElement(By.Id("displayvalue"));
-        public SeleniumInputPage (IWebDriver webdriver)
-        {
-            _driver = webdriver;
-        }
+        private IWebElement _inputField => Driver.FindElement(By.Id("user-message"));
+        private IWebElement _button => Driver.FindElement(By.CssSelector("#get-input > button"));
+        private IWebElement _result => Driver.FindElement(By.Id("display"));
+        private IWebElement _firstInput => Driver.FindElement(By.Id("sum1"));
+        private IWebElement _secondInput => Driver.FindElement(By.Id("sum2"));
+        private IWebElement _getTotalButton => Driver.FindElement(By.CssSelector("#gettotal > button"));
+        private IWebElement _resultFromPage => Driver.FindElement(By.Id("displayvalue"));
+        public SeleniumInputPage(IWebDriver webdriver) : base(webdriver)
+        { }
 
         public void InsertText(string text)
         {

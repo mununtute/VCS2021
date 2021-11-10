@@ -22,7 +22,7 @@ namespace VCSchool1103
             _driver = new ChromeDriver();
             _driver.Url = "https://demo.seleniumeasy.com/basic-first-form-demo.html";
             IWebElement popUp = _driver.FindElement(By.Id("at-cv-lightbox-close"));
-            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
+            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(30));
             wait.Until(d => popUp.Displayed);
             popUp.Click();
         }
