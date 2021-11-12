@@ -71,6 +71,7 @@ namespace VCSchool1023.Page
                 //Assert.IsTrue(!element.Selected, "Checkbox is still checked");
                 //Assert.That(!element.Selected, "Checkbox is still checked");
                 //Assert.That(!element.Selected, "Checkbox is still checked");
+                //Assert.That(!element.Selected, "Checkbox is still checked");
             }
             return this;
         }
