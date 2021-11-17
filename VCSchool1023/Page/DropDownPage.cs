@@ -19,9 +19,17 @@ namespace VCSchool1023.Page
         private IWebElement FirstSelectedButton => Driver.FindElement(By.Id("printMe"));
         private IWebElement GetAllSelectedButton => Driver.FindElement(By.Id("printAll"));
         private SelectElement MultiDropDown => new SelectElement(Driver.FindElement(By.Id("multi-select")));
+        private IWebElement ResultTextAllSelectedElement => Driver.FindElement(By.CssSelector(".getall-selected"));
         public DropDownPage(IWebDriver webdriver) : base(webdriver)
         {
             Driver.Url = PageAddress;
+        }
+
+        public DropDownPage NavigateToDefaultPage()
+        {
+            if (Driver.Url != PageAddress)
+                Driver.Url = PageAddress;
+            return this;
         }
 
         public DropDownPage SelectFromDropdownByText(string text)
@@ -29,37 +37,17 @@ namespace VCSchool1023.Page
             DropDown.SelectByText(text);
             return this;
         }
-
         public DropDownPage SelectFromDropdownByValue(string text)
         {
             DropDown.SelectByValue(text);
             return this;
         }
-
-        public DropDownPage SelectFromMultiDropDownByValue(string firstValue, string secondValue)
+        public DropDownPage VerifyResult(string selectedDay)
         {
-            Actions action = new Actions(Driver);
-            MultiDropDown.SelectByValue(firstValue);
-            action.KeyDown(Keys.Control);
-            MultiDropDown.SelectByValue(secondValue);
-            action.KeyUp(Keys.Control);
-            action.Build().Perform();
+            Assert.IsTrue(ResultTextElement.Text.Equals(ResultText + selectedDay), $"Result is wrong, not {selectedDay}");
             return this;
         }
-
-        public DropDownPage ClickFirstSelectedButton()
-        {
-            FirstSelectedButton.Click();
-            return this;
-        }
-
-        public DropDownPage ClickAllSelectedButton()
-        {
-            GetAllSelectedButton.Click();
-            return this;
-        }
-
-        public DropDownPage SelectFromMultipleDropdownByValue(List<string> listOfStates)
+        public DropDownPage SelectFromMultipleDropdownAndClickFirstButton(List<string> listOfStates)
         {
             MultiDropDown.DeselectAll();
             Actions action = new Actions(Driver);
@@ -81,11 +69,60 @@ namespace VCSchool1023.Page
             action.Build().Perform();
             return this;
         }
-
-        public DropDownPage VerifyResult(string selectedDay)
+        public DropDownPage ClickGetAllButton()
         {
-            Assert.IsTrue(ResultTextElement.Text.Equals(ResultText + selectedDay), $"Result is wrong, not {selectedDay}");
+            GetAllSelectedButton.Click();
             return this;
         }
+
+        public DropDownPage CheckListedStates(List<string> selectedElements)
+        {
+            string result = ResultTextAllSelectedElement.Text;
+            foreach (string selectedElement in selectedElements)
+            {
+                Assert.True(result.Contains(selectedElement),
+                    $"Should be {selectedElement}, but was {result}");
+            }
+            return this;
+        }
+        public DropDownPage CheckFirstState(string selectedElement)
+        {
+            string result = ResultTextAllSelectedElement.Text;
+            Assert.True(result.Contains(selectedElement),
+                $"{selectedElement} is missing. {result}");
+            return this;
+        }
+
+        public DropDownPage SelectFromMultipleDropDownByValue(List<string> listOfStates)
+        {
+            MultiDropDown.DeselectAll();
+            foreach (IWebElement option in MultiDropDown.Options)
+                if (listOfStates.Contains(option.GetAttribute("value")))
+                {
+                    ClickMultipleBox(option);
+                }
+            return this;
+        }
+        private void ClickMultipleBox(IWebElement element)
+        {
+            Actions actions = new Actions(Driver);
+            actions.KeyDown(Keys.Control);
+            actions.Click(element);
+            actions.KeyUp(Keys.Control);
+            actions.Build().Perform();
+        }
+        public DropDownPage ClickFirstSelectedButton()
+        {
+            FirstSelectedButton.Click();
+            return this;
+        }
+
+        public DropDownPage ClickAllSelectedButton()
+        {
+            GetAllSelectedButton.Click();
+            return this;
+        }
+
     }
 }
+

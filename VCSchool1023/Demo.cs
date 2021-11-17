@@ -19,6 +19,7 @@ namespace VCSchool1103
         public static void TestNowIs19()
         {
             DateTime CurrentTime = DateTime.Now;
+          
             Assert.IsTrue(CurrentTime.Hour.Equals(19), "Dabar ne 19 valanda");
             //Assert.AreEqual(19, CurrentTime.Hour, "Dabar ne 19 valanda");
         }
