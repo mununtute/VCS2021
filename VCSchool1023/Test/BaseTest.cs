@@ -1,11 +1,8 @@
-﻿using NUnit.Framework;
+﻿
+
+using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VCSchool1023.Drivers;
 using VCSchool1023.Page;
 using VCSchool1023.Tools;
@@ -15,17 +12,32 @@ namespace VCSchool1023.Test
     public class BaseTest
     {
         public static IWebDriver driver;
+        public static CheckboxDemoPage _checkBoxDemoPage;
+        public static SeleniumInputPage _seleniumInputPage;
         public static DropDownPage _dropDownPage;
         public static VartuTechnikaPage _vartuTechnikaPage;
         public static SebPage _sebPage;
+        public static VoverytesButikasLoginPage _loginPage;
+        public static CheckOutPageAndShipping _checkoutPage;
+        public static SenukaiPage _senukaiPage;
+        public static AlertPage _alertPage;
+
+
 
         [OneTimeSetUp]
         public static void SetUp()
         {
             driver = CustomDriver.GetChromeDriver();
+            //driver = CustomDriver.GetIncognitoChrome();
+            _checkBoxDemoPage = new CheckboxDemoPage(driver);
             _dropDownPage = new DropDownPage(driver);
+            _seleniumInputPage = new SeleniumInputPage(driver);
             _vartuTechnikaPage = new VartuTechnikaPage(driver);
             _sebPage = new SebPage(driver);
+            _loginPage = new VoverytesButikasLoginPage(driver);
+            _checkoutPage = new CheckOutPageAndShipping(driver);
+            _senukaiPage = new SenukaiPage(driver);
+            _alertPage = new AlertPage(driver);
         }
 
         [TearDown]

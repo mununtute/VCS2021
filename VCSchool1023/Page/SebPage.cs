@@ -1,11 +1,9 @@
-﻿using NUnit.Framework;
+﻿
+
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VCSchool1023.Page
 {
@@ -18,8 +16,7 @@ namespace VCSchool1023.Page
         private IWebElement _Result => Driver.FindElement(By.CssSelector("#mortgageCalculatorStep2 > div.row > div > div:nth-child(5) > div > span > strong"));
         private SelectElement _CityDropdown => new SelectElement(Driver.FindElement(By.Id("city")));
         public SebPage(IWebDriver webdriver) : base(webdriver)
-        {
-        }
+        {}
 
         public SebPage NavigateToDefaultPage()
         {

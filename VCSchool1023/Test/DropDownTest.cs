@@ -1,13 +1,7 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using System;
-using System.Collections.Generic;
+﻿
+
+using NUnit.Framework;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VCSchool1023.Drivers;
-using VCSchool1023.Page;
 
 namespace VCSchool1023.Test
 {

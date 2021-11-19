@@ -1,12 +1,10 @@
-﻿using NUnit.Framework;
+﻿
+
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VCSchool1023.Page
 {
@@ -21,9 +19,7 @@ namespace VCSchool1023.Page
         private SelectElement MultiDropDown => new SelectElement(Driver.FindElement(By.Id("multi-select")));
         private IWebElement ResultTextAllSelectedElement => Driver.FindElement(By.CssSelector(".getall-selected"));
         public DropDownPage(IWebDriver webdriver) : base(webdriver)
-        {
-            Driver.Url = PageAddress;
-        }
+        {}
 
         public DropDownPage NavigateToDefaultPage()
         {
@@ -47,7 +43,7 @@ namespace VCSchool1023.Page
             Assert.IsTrue(ResultTextElement.Text.Equals(ResultText + selectedDay), $"Result is wrong, not {selectedDay}");
             return this;
         }
-        public DropDownPage SelectFromMultipleDropdownAndClickFirstButton(List<string> listOfStates)
+        public DropDownPage SelectFromMultipleDropdownAndClickFirstButton(List <string> listOfStates)
         {
             MultiDropDown.DeselectAll();
             Actions action = new Actions(Driver);

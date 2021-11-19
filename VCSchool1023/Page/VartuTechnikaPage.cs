@@ -1,11 +1,9 @@
-﻿using NUnit.Framework;
+﻿
+
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VCSchool1023.Page
 {
@@ -21,9 +19,7 @@ namespace VCSchool1023.Page
         private IWebElement _resultBox => Driver.FindElement(By.CssSelector("#calc_result > div"));
 
         public VartuTechnikaPage(IWebDriver webdriver) : base(webdriver)
-        {
-            Driver.Url = PageAddress;
-        }
+        {}
 
         public VartuTechnikaPage NavigateToDefaultPage()
         {

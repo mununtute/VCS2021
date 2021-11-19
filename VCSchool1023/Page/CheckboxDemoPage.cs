@@ -1,10 +1,8 @@
-﻿using NUnit.Framework;
+﻿
+
+using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VCSchool1023.Page
 {
@@ -18,8 +16,13 @@ namespace VCSchool1023.Page
         private IWebElement _Button => Driver.FindElement(By.Id("check1"));
 
         public CheckboxDemoPage(IWebDriver webdriver) : base(webdriver)
+        { }
+
+        public CheckboxDemoPage NavigateToDefaultPage()
         {
-            Driver.Url = PageAddress;
+            if (Driver.Url != PageAddress)
+                Driver.Url = PageAddress;
+            return this;
         }
         public CheckboxDemoPage CheckSingleCheckbox()
         {
@@ -56,7 +59,7 @@ namespace VCSchool1023.Page
         {
            // GetWait().Until(ExpectedConditions.TextToBePresentInElement(_Button, "Uncheck All"));
            // DefaultWait.Until(ExpectedConditions.TextToBePresentInElementValue(_Button, "Uncheck All"));
-            //Assert.IsTrue(Button.GetAttribute("value").Equals(value), "Second is wrong");
+            Assert.IsTrue(_Button.GetAttribute("value").Equals(value), "Second is wrong");
             return this;
         }
 

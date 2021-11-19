@@ -1,17 +1,14 @@
-﻿using NUnit.Framework;
+﻿
+
+using NUnit.Framework;
 using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VCSchool1023.Page
 {
     public class SeleniumInputPage : BasePage
     {
-       // private static IWebDriver Driver; reikia istrinti
-
+        // private static IWebDriver Driver; reikia istrinti
+        private const string PageAddress = "https://demo.seleniumeasy.com/basic-first-form-demo.html";
         private IWebElement _inputField => Driver.FindElement(By.Id("user-message"));
         private IWebElement _button => Driver.FindElement(By.CssSelector("#get-input > button"));
         private IWebElement _result => Driver.FindElement(By.Id("display"));
@@ -22,44 +19,59 @@ namespace VCSchool1023.Page
         public SeleniumInputPage(IWebDriver webdriver) : base(webdriver)
         { }
 
-        public void InsertText(string text)
+        public SeleniumInputPage NavigateToDefaultPage()
+        {
+            if (Driver.Url != PageAddress)
+                Driver.Url = PageAddress;
+            return this;
+        }
+
+        public SeleniumInputPage InsertText(string text)
         {
             _inputField.Clear();
             _inputField.SendKeys(text);
+            return this;
         }
 
-        public void ClickShowMessageButton()
+        public SeleniumInputPage ClickShowMessageButton()
         {
             _button.Click();
+            return this;
         }
 
-        public void CheckResult(string expectedResult)
+        public SeleniumInputPage CheckResult(string expectedResult)
         {
             Assert.AreEqual(expectedResult, _result.Text, "Tekstas neatsirado");
+            return this;
         }
-        public void InsertFirstInput(string text)
+        public SeleniumInputPage InsertFirstInput(string text)
         {
             _firstInput.Clear();
             _firstInput.SendKeys(text);
+            return this;
         }
-        public void InsertSecondInput(string text)
+        public SeleniumInputPage InsertSecondInput(string text)
         {
             _secondInput.Clear();
             _secondInput.SendKeys(text);
+            return this;
         }
 
-        public void InsertBothsInput(string first, string second)
+        public SeleniumInputPage InsertBothsInput(string first, string second)
         {
             InsertFirstInput(first);
             InsertSecondInput(second);
+            return this;
         }
-        public void ClickGetTotalButton()
+        public SeleniumInputPage ClickGetTotalButton()
         {
             _getTotalButton.Click();
+            return this;
         }
-        public void CheckSumResult(string expectedResultSum)
+        public SeleniumInputPage CheckSumResult(string expectedResultSum)
         {
             Assert.AreEqual(expectedResultSum, _resultFromPage.Text, "Result is NOK");
+            return this;
         }
         
     }
